@@ -422,7 +422,7 @@ export function KalyaniSite() {
 
         <div className="mx-auto my-auto flex w-full max-w-[1440px] flex-col justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-12">
           <div className="max-w-3xl animate-fade-in-up">
-            <p className="mb-6 sm:mb-8 flex items-center gap-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] sm:tracking-[0.3em] text-orange">
+            <p className="mb-4 sm:mb-6 flex items-center gap-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] sm:tracking-[0.3em] text-orange">
               <span className="relative flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-orange" />
@@ -438,7 +438,7 @@ export function KalyaniSite() {
             <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
               <a
                 href="#capabilities"
-                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-lg bg-orange px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-sm transition-all duration-300 hover:bg-cream hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-95"
+                className="hover-shine group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-lg bg-orange px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-lg shadow-orange/20 transition-all duration-300 hover:bg-cream hover:shadow-xl hover:shadow-orange/30 hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-95"
               >
                 Explore capabilities
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
@@ -552,30 +552,31 @@ export function KalyaniSite() {
             </div>
           </ScrollReveal>
 
-          <div className="grid gap-px bg-cream/20 lg:grid-cols-3">
-            {services.map((service) => (
-              <article
-                key={service.title}
-                className="group relative flex flex-col justify-between bg-[#403d39] p-6 transition-all duration-300 hover:bg-orange hover:text-ink hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl hover:shadow-orange/25 active:bg-orange active:text-ink sm:p-8"
-              >
-                <div className="flex items-center justify-between border-b border-cream/15 pb-4 transition-colors duration-300 group-hover:border-ink/20">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange transition-colors duration-300 group-hover:text-ink">
-                    {service.detail}
-                  </span>
-                  <ArrowDownRight
-                    className="size-4 text-cream/50 transition-all duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5 group-hover:text-ink"
-                    aria-hidden="true"
-                  />
-                </div>
-                <div className="mt-5">
-                  <h3 className="font-display text-2xl tracking-[-0.03em] sm:text-3xl transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-xs leading-relaxed text-cream/70 transition-colors duration-300 group-hover:text-ink/85 sm:text-sm">
-                    {service.description}
-                  </p>
-                </div>
-              </article>
+          <div className="mt-8 grid gap-4 sm:gap-6 lg:grid-cols-3">
+            {services.map((service, idx) => (
+              <ScrollReveal direction="up" delay={idx * 140} key={service.title} className="h-full">
+                <article
+                  className="group relative flex h-full flex-col justify-between rounded-xl border border-cream/10 bg-[#313638] p-6 transition-all duration-300 hover:border-orange/60 hover:bg-orange hover:text-ink hover:-translate-y-2.5 hover:scale-[1.01] hover:shadow-2xl hover:shadow-orange/30 active:bg-orange active:text-ink sm:p-8"
+                >
+                  <div className="flex items-center justify-between border-b border-cream/15 pb-4 transition-colors duration-300 group-hover:border-ink/20">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange transition-colors duration-300 group-hover:text-ink">
+                      {service.detail}
+                    </span>
+                    <ArrowDownRight
+                      className="size-4 text-cream/50 transition-all duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5 group-hover:text-ink"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="mt-5">
+                    <h3 className="font-display text-2xl tracking-[-0.03em] sm:text-3xl transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-cream/70 transition-colors duration-300 group-hover:text-ink/85 sm:text-sm">
+                      {service.description}
+                    </p>
+                  </div>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -674,53 +675,7 @@ export function KalyaniSite() {
                     <span className="font-mono text-[10px]">{p.id}</span>
                     <span className="max-w-[120px] truncate">{p.name.split(' ')[0]}</span>
                   </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Interactive Component Selector (Swipeable on mobile, wraps on tablet & desktop) */}
-            <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar sm:flex-wrap" role="tablist" aria-label="Component selector">
-              {products.map((p, idx) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeProduct === idx}
-                  onClick={() => setActiveProduct(idx)}
-                  className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold tracking-wider transition-all duration-200 active:scale-95 ${
-                    activeProduct === idx
-                      ? 'bg-orange text-ink font-bold shadow-md scale-105 ring-2 ring-orange/40'
-                      : 'bg-white/5 text-cream/70 border border-cream/15 hover:border-orange/50 hover:text-cream hover:scale-102'
-                  }`}
-                >
-                  <span className="font-mono text-[10px]">{p.id}</span>
-                  <span className="max-w-[120px] truncate">{p.name.split(' ')[0]}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Featured Active Product Viewer with Touch Gestures & Motion */}
-            <div
-              key={products[activeProduct].id}
-              className="mt-6 sm:mt-8 grid gap-6 sm:gap-8 rounded-xl border border-cream/15 bg-black/30 p-4 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:p-10 select-none animate-scale-in"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              {/* Product Visual Showcase with Living Motion */}
-              <div className="relative flex min-h-[220px] sm:min-h-[340px] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-cream/10 via-white/5 to-transparent p-6 sm:p-8">
-                <div className="absolute size-52 sm:size-64 rounded-full bg-orange/20 blur-3xl animate-subtle-pulse" />
-                <img
-                  src={products[activeProduct].image}
-                  alt={products[activeProduct].name}
-                  className="relative z-10 max-h-48 sm:max-h-64 w-auto max-w-[85%] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] animate-subtle-float transition-all duration-500 hover:scale-110"
-                />
-                <span className="absolute bottom-3 left-4 font-mono text-[10px] tracking-widest text-cream/40">
-                  COMPONENT {products[activeProduct].id}
-                </span>
-                <span className="absolute bottom-3 right-4 rounded-full bg-black/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-orange sm:hidden">
-                  Swipe ← →
-                </span>
+                ))}
               </div>
 
               {/* Featured Active Product Viewer with Touch Gestures & Motion */}
